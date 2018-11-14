@@ -1,0 +1,7 @@
+<view>
+<image src="{{avatarpath}}"></image>
+{{username}}:{{desc}}
+</view>
+<view wx:for="{{pic}}">
+1:<image src='{{item.Path}}'></image>
+</view>

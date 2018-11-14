@@ -1,0 +1,34 @@
+{
+  "pages": [
+    "pages/map/map",
+    "pages/index/index",
+    "pages/my/my",
+    "pages/getuserinfo/getuserinfo",
+    "pages/addfreshnews/addfreshnews",
+    "pages/freshnewsdetail/freshnewsdetail"
+  ],
+  "tabBar": {
+    "backgroundColor": "#F7F7FA",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/map/map",
+        "text": "附近",
+        "iconPath": "images/map.png",
+        "selectedIconPath": "images/map-selected.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-selected.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  }
+}

@@ -1,0 +1,11 @@
+/* pages/ask/ask.wxss */
+.section{
+  display: flex;
+  padding: 10px;
+  justify-content: center
+}
+
+
+.pad5px{
+padding:5px;
+}

@@ -1,0 +1,74 @@
+<view class="page ">
+
+
+  <view class="weui-uploader__title pad5px">内容(必填):</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        <textarea class="weui-textarea" name="desc" placeholder="请输入文本" value='{{placeholder}}' maxlength="500" style="height: 5.3em" bindinput="descinput" />
+        <view class="weui-textarea-counter">{{inputnum}}/500</view>
+      </view>
+    </view>
+  </view>
+
+
+
+
+  <view>
+    <view class="weui-cells">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <view class="weui-uploader">
+            <view class="weui-uploader__hd">
+              <view class="weui-uploader__title">图片上传(可选)</view>
+              <view class="weui-uploader__info">{{imagelength}}/1</view>
+            </view>
+            <view class="weui-uploader__bd">
+              <view class="weui-uploader__files" id="uploaderFiles">
+                <block wx:for="{{files}}" wx:key="*this">
+                  <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                    <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                  </view>
+                </block>
+              </view>
+              <view class="weui-uploader__input-box">
+                <view class="weui-uploader__input" bindtap="uploadimg"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- <view class="weui-cells  page__bd_spacing">
+
+    <picker bindchange="bindPickerChange" name="gradeindex" value="{{gradeindex}}" range="{{gradearray}}">
+      <view class="weui-uploader__title" style='text-align:center;padding:5px'>
+        年级(必填):{{gradearray[gradeindex]}}
+      </view>
+    </picker>
+  </view> -->
+
+
+
+  <!-- <view class="weui-cells  page__bd_spacing">
+
+    <picker bindchange="bindPickerChangereward" name="rewardindex" value="{{rewardindex}}" range="{{rewardarray}}">
+      <view class="weui-uploader__title" style='text-align:center;padding:5px'>
+        奖励(必填):{{rewardarray[rewardindex]}}
+      </view>
+    </picker>
+  </view> -->
+
+  <view class="weui-btn-area">
+        <form  report-submit='true' bindsubmit='ask'>
+          <button class="weui-btn" form-type='submit' class="weui-btn" type="primary" data-statu="close" disabled='{{disabledbut}}'>确定</button>
+        </form>
+        <form  report-submit='true' bindsubmit='cancelask'>
+          <button class="weui-btn" form-type='submit' class="weui-btn" type="default" data-statu="close">取消</button>
+        </form>
+  </view>
+
+</view>
