@@ -55,9 +55,20 @@ Page({
           height: 40
         },
         clickable: true
-      } 
+      } ,{
+        id: 5,
+        iconPath: '/images/camera.png',
+        position: {
+          left: 0,
+          top: 210,
+          width: 40,
+          height: 40
+        },
+        clickable: true
+      },
     ],
-    mapCtx:null
+    mapCtx:null,
+    twopoints:null,
   },
   onReady: function (e) {
     // 使用 wx.createMapContext 获取 map 上下文 
@@ -133,10 +144,12 @@ Page({
       that.setData({
         scale: tmpscale
       })
-    } else {
+    } else if (e.controlId === 4) {
       that.translateMarker(app.globalData.openid)
     }
-
+    else if (e.controlId === 5) {
+      that.addfreshnewsconfirm()
+    }
 
   },
   getSchoolMarkers(){
@@ -222,22 +235,53 @@ Page({
   translateMarker(openid) {
     var that = this
     var length = that.data.markers[openid].length
+    if(length<2){
+      console.log("too few point")
+      return
+    }
+    var twopoints = []
+    twopoints.push({
+      longitude: that.data.markers[openid][0].longitude,
+      latitude: that.data.markers[openid][0].latitude
+    })
+    // twopoints.push({
+    //   longitude: that.data.markers[openid][1].longitude,
+    //   latitude: that.data.markers[openid][1].latitude
+    // })
     for (var i=0; i< length;i++){
+      (function(i){
 
-      console.log('move',this.data.markers[openid][i])
-      var p = this.data.markers[openid][i]
-      that.mapCtx.translateMarker({
-        markerId: 0,
-        autoRotate: false,
-        duration: 1000,
-        destination: {
-          latitude: p['latitude'],
-          longitude: p['longitude'],
-        },
-        animationEnd() {
-          console.log('animation end')
-        }
-      })
+        console.log(i)
+
+        
+        var p = that.data.markers[openid][i]
+        var k = i
+        that.mapCtx.translateMarker({
+          markerId: 0,
+          autoRotate: false,
+          duration: 3000,
+          destination: {
+            latitude: p['latitude'],
+            longitude: p['longitude'],
+          },
+          animationEnd() {
+            console.log('animation end,',k)
+            if(k>length-2){return}
+            twopoints.push({
+              longitude: that.data.markers[openid][k + 1].longitude,
+              latitude: that.data.markers[openid][k + 1].latitude
+            })
+            console.log(twopoints)
+            that.setData({
+              twopoints: twopoints
+            })
+            if(twopoints.length>4){
+              twopoints.splice(0, 1)
+            }
+            
+          }
+        })
+      }(i))
     }
 
   },
@@ -265,12 +309,20 @@ Page({
     })
   },
 
-
-
-  addfreshnews:function(){
-    wx.navigateTo({
-      url: '../addfreshnews/addfreshnews',
+  addfreshnewsconfirm: function () {
+    wx.showModal({
+      title: '提示',
+      content: '在此处添加一条？',
+      success:function(e){
+        if (e.confirm){
+          wx.navigateTo({
+            url: '../addfreshnews/addfreshnews',
+          })
+        }
+      }
     })
+
+
   },
 
   downloadfile:function(url,id){

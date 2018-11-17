@@ -6,7 +6,6 @@ Page({
    */
   data: {
     avatarpath:null,
-    answerbox:true,
     bgimgpath:null,
     myname:'',
     myavatar:'',
@@ -25,6 +24,7 @@ Page({
     bezanorcomfnid:null,
     bezanorcomopenid:null,
     fnsowner:null,
+    top:null,
   },
 
   /**
@@ -36,11 +36,13 @@ Page({
       allfns:[]
     })
     that.getfns(that.data.offset)
-
-    
+    // wx.hideTabBar({
+    //   aniamtion:true
+    // })
   },
 
   getfns:function(offset){
+    
     wx.showLoading({
       title: '加载中',
     })
@@ -50,6 +52,8 @@ Page({
       data: { 'openid': app.globalData.openid, 'offset': offset },
       method: "post",
       success: function (res) {
+        wx.hideLoading()
+
         if(res.data['freshNews']==undefined){
           wx.showToast({
             title: '到底咯',
@@ -64,12 +68,14 @@ Page({
             myname: res.data['myname'],
             myavatar: res.data['myavatar'],
           })
+          app.globalData.nickname = res.data['myname']
+          app.globalData.avatarpath = res.data['myavatar']
           console.log('allfns is:',that.data.allfns)
           if (res.data['bgimgpath']){
             that.setData({
               bgimgpath: res.data['bgimgpath'],
             })
-            
+            app.globalData.bgimgpath = res.data['bgimgpath']
           }
         }
 
@@ -102,6 +108,7 @@ Page({
         that.setData({
           bgimgpath: src
         })
+        app.globalData.bgimgpath = src
         //上传背景图
         wx.uploadFile({
           url: app.globalData.baseurl + '/user/uploadbgimg',
@@ -154,6 +161,13 @@ Page({
       bezanorcomindex: e.currentTarget.dataset.index,
       bezanorcomfnid: e.currentTarget.dataset.freshnewsid,
       bezanorcomopenid: e.currentTarget.dataset.useropenid,
+    })
+  },
+
+  hideinputtext:function(){
+    var that = this
+    that.setData({
+      hideinput:true
     })
   },
   zan:function(e){
@@ -218,7 +232,6 @@ Page({
     var that = this
     console.log(e.currentTarget.dataset)
     that.setData({
-      answerbox: false,
       hideinput:false,
       fnsowner:e.currentTarget.dataset.fnsowner
     })
@@ -272,10 +285,10 @@ Page({
 
   },
 
-  getselffreshnews:function(){
-    // wx.navigateTo({
-    //   url: '../myprofile/myprofile',
-    // })
+  getselfprofile:function(){
+    wx.navigateTo({
+      url: '../myfns/myfns',
+    })
   },
 
   /**
@@ -316,12 +329,37 @@ Page({
       offset: 0
     })
     that.getfns(that.data.offset)
+    wx.stopPullDownRefresh();
   },
+
+  onPageScroll:function(e){
+    var that = this
+    if (e.scrollTop - that.data.top > 100 || that.data.top - e.scrollTop >= 100){
+      if (that.data.top - e.scrollTop >= 50) {
+        //向下滚动 
+        wx.showTabBar({
+        })
+      } else {
+        //向上滚动 
+        wx.hideTabBar({
+        })
+      }
+      //给scrollTop重新赋值 
+      this.setData({
+        top: e.scrollTop
+      })
+    }
+    
+  },
+
+
+
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+
     var that = this
     var offsetnew = that.data.offset + 1
     that.setData({
@@ -335,5 +373,8 @@ Page({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+  
+  
+
 })

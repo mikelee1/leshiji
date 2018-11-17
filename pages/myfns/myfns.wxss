@@ -1,0 +1,120 @@
+
+page{
+  background: #ffffff;
+}
+
+.timeline {
+  background: #fff;
+}
+
+.timeline-item {
+  padding: 20rpx 20rpx 20rpx 140rpx;
+  position: relative;
+}
+
+.timeline-item::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 1rpx;
+  background: #ddd;
+  left: 70rpx;
+  height: 100%;
+  top: 0;
+  z-index: 8;
+}
+
+.timeline-item::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 15rpx;
+  background: #ddd;
+  left: 57rpx;
+  height: 15rpx;
+  border: 8rpx solid #fff;
+  border-radius: 50%;
+  top: 45rpx;
+  z-index: 9;
+}
+
+.timeline-item.cur::before, .timeline-item.cur::after,
+.timeline-item.cur .timeline-main {
+  background: #39b54a;
+  color: #fff;
+}
+
+.timeline-time {
+  width: 140rpx;
+  text-align: center;
+  padding: 20rpx;
+  font-size: 26rpx;
+  color: #888;
+}
+
+.timeline-main {
+  color: #666;
+  /* background: #f1f1f1; */
+  padding: 20rpx;
+  border-radius: 6rpx;
+}
+
+.timeline-item.timeline-sm {
+  padding: 20rpx 20rpx 20rpx 100rpx;
+}
+
+.timeline-item.timeline-sm::after {
+  left: 50rpx;
+}
+
+.timeline-item.timeline-sm::before {
+  left: 37rpx;
+}
+
+/* 头像 */
+#avt,#user-name {
+    position: absolute
+}
+
+#bg {
+    width: 100%
+}
+
+#user-name {
+    text-align: right;
+    right: 114px;
+    top: 190px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    text-shadow: 0 1px .5px #000
+}
+
+#avt {
+    width: 90px;
+    height: 90px;
+    border: 1px solid #dbdbdb;
+    right: 15px;
+    top:180px;
+    padding: 1px;
+    background-color: #fff
+}
+
+/* 评论 */
+.cmt-list {
+    padding: 5px 12px;
+    color: #454545
+}
+
+.cmt-list p {
+    padding-top: 3px
+}
+
+.cmt-list span {
+    color: #3b5384
+}
+
+.cmt-wrap {
+    width: 100%;
+    background-color: #eee
+}

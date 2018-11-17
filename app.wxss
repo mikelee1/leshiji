@@ -1,4 +1,19 @@
 /**app.wxss**/
+@import 'assets/styles/weui.wxss';
+@import 'assets/styles/skyvow.wxss';
+@import "colorui.wxss";
+
+.like {
+    color: #576b95;
+    padding: 5px 5px 3px 12px
+}
+
+.like image {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+
 .container {
   height: 100%;
   display: flex;

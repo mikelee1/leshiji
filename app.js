@@ -28,15 +28,6 @@ App({
             
             that.globalData.openid = res.data.openid
             console.log(res)
-            // wx.getUserInfo({
-            //   success: res => {
-            //     // util.loading(that)
-            //     that.globalData.userInfo = res.userInfo
-            //     that.globalData.hasUserInfo = true
-            //     that.globalData.nickname = res.userInfo.nickName
-            //     that.globalData.avatar = res.userInfo.avatarUrl
-            //   }
-            // })
           },
         })
       }

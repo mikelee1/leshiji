@@ -1,0 +1,93 @@
+
+<map include-points='twopoints' id="map"  scale="{{scale}}" controls="{{controls}}" bindcontroltap="controltap" markers="{{markerslist}}" longitude='{{longitude}}' latitude='{{latitude}}' bindlongtap='addfreshnewsconfirm'  bindmarkertap="markertap" bindregionchange="regionchange" show-location style="width: 100%; height: {{height}}px;">
+</map>
+
+<!-- <view class="page">
+    <view class="page__hd">
+        <view class="page__title">Popover</view>
+        <view class="page__desc">气泡框</view>
+    </view>
+    <view class="page__bd">
+
+        <view class="button-sp-area text-right">
+            <wux-popover placement="left" title="Title" content="Content">
+                <button size="mini">left</button>
+            </wux-popover>
+        </view>
+
+    </view>
+</view>
+      <view class='chat-centact'>
+        喵喵喵！喵！喵！喵！喵喵喵！
+      </view> -->
+
+
+<!--test/test.wxml-->
+<!-- 
+<view class="doc-main">
+  <view class="lattice-image">
+
+    <view>
+      <image src='http://image.weilanwl.com/img/3x4-4.jpg' mode='aspectFill'></image>
+    </view>
+    <view>
+      <image src='http://image.weilanwl.com/img/3x4-1.jpg' mode='aspectFill'></image>
+    </view>
+    <view>
+      <image src='http://image.weilanwl.com/img/3x4-2.jpg' mode='aspectFill'></image>
+    </view>
+    <view>
+      <image src='http://image.weilanwl.com/img/3x4-3.jpg' mode='aspectFill'></image>
+    </view>
+    <view class='lattice-btn'>
+      <text class='iconfont icon-pic'></text>
+    </view>
+  </view>
+</view>
+
+
+<view class="bar solid-bottom mt-sm">
+  <view class='ml-sm'>
+    <text class='iconfont icon-titles success-text'></text>
+    <text class='text-lg ml-xs'>日记时间轴</text>
+  </view>
+</view>
+<view class='timeline'>
+  <view class="timeline-box">
+    <view class='timeline-item timeline-sm'>
+      <view class='timeline-main'>
+        <view class='badge secondary radius capsule-badge'>
+          <text>上午</text>
+          <text>10:00</text>
+        </view>
+        <view class='mt-sm text-sm'>这是第一次，我家的铲屎官走了这么久。久到足足有三天！！ 在听到他的脚步声响在楼梯间的那一刻，我简直想要破门而出，对着他狠狠地吼上10分钟，然后再看心情要不要他进门。</view>
+        <view class="lattice-image">
+          <view>
+            <image src='http://image.weilanwl.com/img/4x3-2.jpg' mode='aspectFill'></image>
+          </view>
+          <view style="background-image:url('http://image.weilanwl.com/img/4x3-3.jpg')"></view>
+          <view style="background-image:url('http://image.weilanwl.com/img/4x3-4.jpg')"></view>
+          <view>
+            <image src='http://image.weilanwl.com/img/4x3-1.jpg' mode='aspectFill'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='timeline-item timeline-sm'>
+      <view class='timeline-main'>
+        <view class='badge secondary radius capsule-badge'>
+          <text>晚上</text>
+          <text>3:00</text>
+        </view>
+        <view class='mt-sm text-sm'>晚上的星星可真多呀.我轻轻地躺在他身边,用手紧紧地勾着他的衣服,在他脸上舔了舔.又没拍爽肤水....不过,我就是喜欢.</view>
+        <view class="lattice-image">
+          <view>
+            <image src='http://image.weilanwl.com/img/4x3-2.jpg' mode='aspectFill'></image>
+          </view>
+          <view style="background-image:url('http://image.weilanwl.com/img/4x3-3.jpg')"></view>
+          <view style="background-image:url('http://image.weilanwl.com/img/4x3-4.jpg')"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view> -->

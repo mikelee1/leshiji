@@ -4,9 +4,11 @@
   display: flex;
   flex-direction: row;
   color: #b1b1b1;
-  font-size: 13px;
+  font-size: 15px;
   position: fixed;
-  text-align: right
+  text-align: right;
+  height:30px
+
 }
 
 .weui_mask_transition {
@@ -368,8 +370,18 @@ header {
     width: 100%;
     background-color: #eee
 }
+.chat-centact1{
+  border-radius:6rpx;
+  padding:10rpx;
+  display:flex;
+  text-align:center;
+  height:30px;
+  background:#000;
+  color:#666;
 
-.like {
+}
+
+/* .like {
     color: #576b95;
     padding: 5px 5px 3px 12px
 }
@@ -378,7 +390,7 @@ header {
     width: 15px;
     height: 15px;
     padding-right: 5px
-}
+} */
 
 .cmt-list {
     padding: 5px 12px;

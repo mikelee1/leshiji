@@ -1,0 +1,5 @@
+{
+      "usingComponents": {
+        "wux-popover": "../../dist/popover/index"
+      }
+}

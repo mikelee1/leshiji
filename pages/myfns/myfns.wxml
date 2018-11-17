@@ -1,0 +1,63 @@
+<!--pages/myfns/myfns.wxml-->
+
+<view>
+  <image id="bg" src="{{bgimgpath}}" bindtap='changebgimg'></image>
+  <text id="user-name" class="data-name">{{myname}}</text>
+  <image id="avt" bindtap='getselfprofile' class="data-avt" src="{{myavatar}}"></image>
+</view>
+
+<view class="bar solid-bottom" style='margin-top:90rpx;'>
+  <view class='ml-sm'>
+    <text class='iconfont icon-titles success-text'></text>
+    <text class='text-lg ml-xs'>心情时间轴</text>
+  </view>
+</view>
+<view class='timeline'>
+  <view class="timeline-box">
+    <view class='timeline-item timeline-sm' wx:for="{{allfns}}" wx:key="{{item.freshnewsid}}">
+      <text>{{item.date}}</text>
+      <text wx:if="{{item.isanonymous}}">(匿名发送)</text>
+      <view class='timeline-main'>
+        <view class='badge secondary radius capsule-badge'>
+          <text>{{item.noon}}</text>
+          <text>{{item.hmtime}}</text>
+          
+        </view>
+        <view class='mt-sm text-sm'>{{item.desc}}</view>
+        <view class="lattice-image">
+          <view wx:for="{{item.pic}}">
+            <image src='{{item.Path}}' mode='aspectFill' bindtap='viewimage' data-image='{{item.Path}}'></image>
+          </view>
+        </view>
+
+
+        <view class="r" ></view>
+        <view class="cmt-wrap" hidden='{{item.hideall}}'>
+          <view class="like" hidden='{{item.hidelove}}'>
+            <image src="../../images/l.png"></image>{{item.zanername}}</view>
+          <view class="cmt-list" hidden='{{item.hidecomment}}'>
+            <view wx:for="{{item.comment}}">
+              <p wx:if="{{item.becommentername == item.commentername}}">
+                <span>{{item.commentername}}：</span>{{item.desc}}
+              </p>
+              <p wx:elif ="{{item.becommentername != item.username}}">
+                <span class="data-name">{{item.commentername}}</span>
+                回复
+                <span>
+                  {{item.becommentername}}
+                </span>
+                <span>
+                  ：
+                </span>
+                {{item.desc}}
+              </p>
+            </view>
+          </view>
+        </view>
+
+
+
+      </view>
+    </view>
+  </view>
+</view>

@@ -22,19 +22,32 @@ Page({
     ],
     desc: '',
     placeholder:'',
-    img: 'noimage',
+    withimg: false,
     askpicdoor:false,
     avatar:app.globalData.avatar,
     screenwidth:app.globalData.screenwidth,
     screenheight: app.globalData.screenheight,
     imagelength:0,
-    disabledbut:false
+    disabledbut:false,
+    anonymous:'false',
+    hideuploadimg:false,
+    i:0,
+    fnid:0,
   },
 
 
   rewardinput: function (e) {
+    var that = this
     this.setData({
       reward: e.detail.value
+    })
+  },
+
+  onChangeAnonymous:function(e){
+    var that = this
+    var res = (that.data.anonymous == 'true')?"false" : "true"
+    that.setData({
+      anonymous: res
     })
   },
 
@@ -74,124 +87,119 @@ Page({
 
   uploadimg: function () {
     var that = this;
+    var a = that.data.files
+    var picseatnum
+
+    if (a[0] == "../../images/pic_160.png") {
+      picseatnum = 9
+    }else{
+      picseatnum = 9-a.length
+    }
     wx.chooseImage({
-      count: 9, // 默认9
+      count: picseatnum, // 默认9
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success(res) {
-        const src = res.tempFilePaths[0]
-        that.setData({
-          files: [src],
-          imagelength:1,
-          problempicsrc: src,
-          askpicdoor:true,
-          img: src
-        })
+        console.log(res)
+        
+        console.log(a)
+        const src = res.tempFilePaths
+        
+        console.log(src)
+        var leng
+        if (a[0] == "../../images/pic_160.png"){
+          leng = res.tempFilePaths.length
+          that.setData({
+            files: src,
+            imagelength: leng,
+            withimg:true,
+            // problempicsrc: src,
+            // askpicdoor: true,
+            // img: src
+          })
+        }else{
+          console.log(a)
+          leng = res.tempFilePaths.length + a.length
+          var b = a.concat(src)
+          that.setData({
+            files: b,
+            imagelength: leng,
+            withimg: true,
+
+            // problempicsrc: src,
+            // askpicdoor: true,
+            // img: src
+          })
+          console.log(b)
+        }
+        if (leng==9){
+          that.setData({
+            hideuploadimg:true
+          })
+        }
+
       }
     })
   },
 
 
-  ask: function (e) {
+  ask: function (data) {
+    var i,fnid
     var that = this
-    // wx.request({
-    //   url: app.globalData.baseurl + '/pushformid',
-    //   data: { 'formid': e.detail.formId, 'openid': app.globalData.openid, 'getrole': 'null' },
-    //   success: function (res) {
-    //   }
-    // })
-    if (this.data.desc==''){
+    if (that.data.desc == '' && that.data.files[0] == "../../images/pic_160.png" ){
       wx.showModal({
         title: '提示',
-        content: '请输入描述',
+        content: '至少输入一项',
       })
     }else{
-
-      this.setData({
-        hide: false,
-        disabledbut:true,
-        userid: app.globalData.openid,
-        avatar: app.globalData.avatar,
-      })
-      
-      if (this.data.img != 'noimage') {
-        // wx.uploadFile({
-        //   url: app.globalData.baseurl + '/ask/',
-        //   filePath: this.data.img,
-        //   name: 'problempic',
-        //   formData: this.data,
-        //   success: function () {
-        //     that.setData({
-        //       disabledbut:false
-        //     })
-        //     wx.showModal({
-        //       title: '提示',
-        //       content: '提问成功',
-        //       success: function (res) {
-        //         if (res.confirm) {
-        //           wx.navigateBack({
-        //           })
-        //         }
-        //       }
-        //     })
-        //   }
-        // })
-        var data = { 'openid': app.globalData.openid, 'longitude': app.globalData.userlongitude, 'latitude': app.globalData.userlatitude, 'desc': that.data.desc }
+      if (that.data.withimg) {
+        i = data.i ? data.i : 0
+        fnid = data.fnid ? data.fnid : 0
+        console.log("i and fnid:",i, fnid)
+        var data = { 'openid': app.globalData.openid, 'longitude': app.globalData.userlongitude, 'latitude': app.globalData.userlatitude, 'desc': that.data.desc, 'anonymous': that.data.anonymous, 'index': i, 'length':that.data.files.length, 'fnid':fnid}
         wx.uploadFile({
           url: app.globalData.baseurl + '/user/addfreshnews',
-          filePath: that.data.img,
+          filePath: that.data.files[i],
           name: 'uploadimg',
           formData: data,
           success: function () {
             that.setData({
               disabledbut:false
             })
-            wx.showModal({
-              title: '提示',
-              content: '提交成功',
-              success: function (res) {
-                if (res.confirm) {
-                  wx.navigateBack({
-                  })
-                }
-              }
-            })
+            // wx.showModal({
+            //   title: '提示',
+            //   content: '提交成功',
+            //   success: function (res) {
+            //     if (res.confirm) {
+            //       wx.navigateBack({
+            //       })
+            //     }
+            //   }
+            // })
+
+          },
+          complete:function(res){
+            i = that.data.i +1
+            console.log('res is:',res)
+            res = JSON.parse(res.data)
+            if (i >= that.data.files.length){
+              console.log('finish')
+              wx.navigateBack({
+              })
+            }else{
+              fnid = res.fnid
+              that.setData({
+                i: i,
+                fnid: fnid
+              })
+              that.ask(that.data)
+            }
+
           }
         })
-
-
+      }else{
+        //仅有内容
       }
-      // else {
-      //   wx.request({
-      //     url: app.globalData.baseurl + '/user/addfreshnews',
-      //     method: 'post',
-      //     header: {
-      //       "Content-Type": "application/x-www-form-urlencoded"
-      //     },
-      //     data: this.data,
-      //     success: function () {
-      //       that.setData({
-      //         disabledbut: false
-      //       })
-      //       wx.showModal({
-      //         title: '提示',
-      //         content: '提问成功',
-      //         success: function (res) {
-      //           if (res.confirm) {
-      //             app.globalData.placeholder = ''
-      //             wx.navigateBack({
-      //             })
-      //           } else if (res.cancel) {
-      //           }
-      //         }
-      //       })
-
-      //     },
-
-
-      //   })
-
-      // }
 
     }
 
@@ -220,9 +228,6 @@ Page({
     })
   },
  onShow:function(){
-  //  this.setData({
-  //    placeholder: app.globalData.placeholder
-  //  })
  }
 
 

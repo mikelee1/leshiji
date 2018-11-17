@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -51,6 +51,30 @@
 					"id": -1,
 					"name": "my",
 					"pathName": "pages/my/my",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "addfreshnews",
+					"pathName": "pages/addfreshnews/addfreshnews",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "test",
+					"pathName": "test/test",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "myfns",
+					"pathName": "pages/myfns/myfns",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "setting",
+					"pathName": "pages/setting/setting",
 					"query": ""
 				}
 			]

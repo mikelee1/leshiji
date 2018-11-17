@@ -5,7 +5,10 @@
     "pages/my/my",
     "pages/getuserinfo/getuserinfo",
     "pages/addfreshnews/addfreshnews",
-    "pages/freshnewsdetail/freshnewsdetail"
+    "pages/freshnewsdetail/freshnewsdetail",
+    "test/test",
+    "pages/myfns/myfns",
+    "pages/setting/setting"
   ],
   "tabBar": {
     "backgroundColor": "#F7F7FA",
@@ -22,6 +25,12 @@
         "text": "我的",
         "iconPath": "images/home.png",
         "selectedIconPath": "images/home-selected.png"
+      },
+      {
+        "pagePath": "pages/setting/setting",
+        "text": "设置",
+        "iconPath": "images/settings.png",
+        "selectedIconPath": "images/settings-selected.png"
       }
     ]
   },

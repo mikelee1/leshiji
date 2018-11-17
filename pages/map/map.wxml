@@ -1,9 +1,2 @@
-
-<!-- <view style='height:30px' style='display:flex;margin:auto;justify-content:center;width:100%'>
-
-        <button bindtap='addfreshnews'>添加新鲜事</button>
-        <button bindtap='translateMarker'>移动标注</button>
-</view> -->
-
-<map id="map"  scale="{{scale}}" controls="{{controls}}" bindcontroltap="controltap" markers="{{markerslist}}" longitude='{{longitude}}' latitude='{{latitude}}' bindlongtap='addfreshnews'  bindmarkertap="markertap" bindregionchange="regionchange" show-location style="width: 100%; height: {{height}}px;">
+<map id="map"  scale="{{scale}}" controls="{{controls}}" bindcontroltap="controltap" markers="{{markerslist}}" longitude='{{longitude}}' latitude='{{latitude}}' bindlongtap='addfreshnewsconfirm'  bindmarkertap="markertap" bindregionchange="regionchange" include-points='{{twopoints}}' show-location style="width: 100%; height: {{height}}px;">
 </map>

@@ -20,10 +20,10 @@
         <view class="weui-cell__bd">
           <view class="weui-uploader">
             <view class="weui-uploader__hd">
-              <view class="weui-uploader__title">图片上传(可选)</view>
-              <view class="weui-uploader__info">{{imagelength}}/1</view>
+              <view class="weui-uploader__title">图片上传</view>
+              <view class="weui-uploader__info">{{imagelength}}/9</view>
             </view>
-            <view class="weui-uploader__bd">
+            <view class="weui-uploader__bd" style='margin:auto;width:80%;'>
               <view class="weui-uploader__files" id="uploaderFiles">
                 <block wx:for="{{files}}" wx:key="*this">
                   <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
@@ -31,7 +31,7 @@
                   </view>
                 </block>
               </view>
-              <view class="weui-uploader__input-box">
+              <view class="weui-uploader__input-box" hidden='{{hideuploadimg}}'>
                 <view class="weui-uploader__input" bindtap="uploadimg"></view>
               </view>
             </view>
@@ -41,26 +41,12 @@
     </view>
   </view>
 
+                
+  <wux-cell title="匿名">
+      <wux-switch name="balanced" slot="footer" color="balanced" value="{{ anonymous=='true' }}" bind:change="onChangeAnonymous" />
+  </wux-cell>
+                
 
-  <!-- <view class="weui-cells  page__bd_spacing">
-
-    <picker bindchange="bindPickerChange" name="gradeindex" value="{{gradeindex}}" range="{{gradearray}}">
-      <view class="weui-uploader__title" style='text-align:center;padding:5px'>
-        年级(必填):{{gradearray[gradeindex]}}
-      </view>
-    </picker>
-  </view> -->
-
-
-
-  <!-- <view class="weui-cells  page__bd_spacing">
-
-    <picker bindchange="bindPickerChangereward" name="rewardindex" value="{{rewardindex}}" range="{{rewardarray}}">
-      <view class="weui-uploader__title" style='text-align:center;padding:5px'>
-        奖励(必填):{{rewardarray[rewardindex]}}
-      </view>
-    </picker>
-  </view> -->
 
   <view class="weui-btn-area">
         <form  report-submit='true' bindsubmit='ask'>
